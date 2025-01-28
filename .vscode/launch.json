@@ -1,0 +1,25 @@
+// .vscode/launch.json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug (OpenOCD)",
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",
+            "cwd": "${workspaceRoot}",
+            "preLaunchTask": "Build Debug",
+            "runToEntryPoint": "main",
+            "executable": "${workspaceRoot}/target/thumbv7em-none-eabihf/debug/${workspaceFolderBasename}",
+            "device": "nRF52833",
+            "configFiles": [
+                "interface/cmsis-dap.cfg",
+                "target/nrf52.cfg"
+            ],
+            "svdFile": "${workspaceRoot}/.vscode/nrf52833.svd",
+            "postLaunchCommands": [
+                "monitor arm semihosting enable"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,48 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Debug",
+            "type": "shell",
+            "command": "cargo",
+            "args": ["build"],
+            "problemMatcher": [
+                "$rustc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Build Release",
+            "type": "shell",
+            "command": "cargo",
+            "args": ["build", "--release"],
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "Flash with cargo-embed",
+            "type": "shell",
+            "command": "cargo",
+            "args": ["embed", "flash"],
+            "problemMatcher": []
+        },
+        {
+            "label": "Flash and Monitor RTT",
+            "type": "shell",
+            "command": "cargo",
+            "args": ["embed", "flash", "--monitor"],
+            "problemMatcher": []
+        },
+        {
+            "label": "Clean",
+            "type": "shell",
+            "command": "cargo",
+            "args": ["clean"],
+            "problemMatcher": []
+        }
+    ]
+}
