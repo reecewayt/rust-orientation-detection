@@ -32,14 +32,14 @@ $$
 
 ## Project Milestones
 1. Environment Setup
-2. Sensor Communication (Week 2)
+2. Sensor Communication
 - Establish I2C communication with LSM303AGR
 - Read basic acceleration values
-3. Orientation Detection (Week 3)
+3. Orientation Detection
 - Implement orientation detection (Vector Math)
 - Create visual feedback by printing human readable values over UART (Virtual Com Port)
 - Test all possible orientations
-3. Power Management (Nice to have)
+3. Power Management
 - Implement low power mode after inactivity configuration
 - Configure wake-up threshold
 - Test power state transitions
@@ -63,3 +63,7 @@ print_info(some_info);
 assert_equal(x, y); 
 ```
 
+## Challenges 
+- Low power mode testing will be difficult and hard to verify especially since the power traces on the board are covered by a silk screen
+- I might need to implement interrupt mechanisms 
+- Depending on the sensor and the stress its been under since manufacturing, I will need to consider error and offset of sensor data. 

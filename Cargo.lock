@@ -176,6 +176,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "i2c"
+version = "0.1.0"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "embedded-hal",
+ "heapless",
+ "lsm303agr",
+ "microbit",
+ "microbit-v2",
+ "nb 1.1.0",
+ "panic-rtt-target",
+ "rtt-target",
+]
+
+[[package]]
 name = "lock_api"
 version = "0.4.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -358,22 +374,6 @@ checksum = "065d6058bb1204f51a562a67209e1817cf714759d5cf845aa45c75fa7b0b9d9b"
 dependencies = [
  "cortex-m",
  "ufmt-write",
-]
-
-[[package]]
-name = "rust-orientation-detection"
-version = "0.1.0"
-dependencies = [
- "cortex-m",
- "cortex-m-rt",
- "embedded-hal",
- "heapless",
- "lsm303agr",
- "microbit",
- "microbit-v2",
- "nb 1.1.0",
- "panic-rtt-target",
- "rtt-target",
 ]
 
 [[package]]
