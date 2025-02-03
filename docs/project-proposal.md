@@ -1,7 +1,7 @@
 # Embedded Rust Orientation Detection Application
 **Author:** Reece Wayt (reecwayt@pdx.edu)  
 **GitHub Repo URL:** https://github.com/reecewayt/rust-orientation-detection  
-**Description:** This project uses the **BBC Microbit V2** which is a SBC with a Nordic nRF52833 processor, on board sensors, leds, buttons, a speaker, and debugger. More specifically, this project will utilize the on-board accelerometer (ST LSM303AGR) to perform orientation sensing. Orientation detection is a very popular and ubiquitously used in satelites, air crafts, VR, and mobile phones. The LSM303AGR has a wide host of features and below are the specific ones I plan to utilize in my implmentation.
+**Description:** This project uses the **BBC Microbit V2** which is a SBC with a Nordic nRF52833 processor, on board sensors, leds, buttons, a speaker, and debugger. More specifically, this project will utilize the on-board accelerometer (ST LSM303AGR) to implement smartphone-style orientation detection. This type of orientation detection is fundamental to mobile devices, which enable them to perform step counting, screen rotations, and motion-based gaming. In my application I will be focusing on screen rotations (i.e. state changes) based on the accelerometer data. 
 
 ## Project Features
 1. 6D Orientation Detection
@@ -43,7 +43,6 @@ $$
 - Implement low power mode after inactivity configuration
 - Configure wake-up threshold
 - Test power state transitions
-4. Turn in project and finalize documenation
 
 ## Testing Strategy
 Rust does not have a unit testing framework for embedded systems, at least not in the sense of the traditional `#[cfg(test)]` attribute. With that said, I'll be utilizing debuggers and conditional compilation to verify code on the host machine as described below. 
@@ -67,3 +66,4 @@ assert_equal(x, y);
 - Low power mode testing will be difficult and hard to verify especially since the power traces on the board are covered by a silk screen
 - I might need to implement interrupt mechanisms 
 - Depending on the sensor and the stress its been under since manufacturing, I will need to consider error and offset of sensor data. 
+- Some form of filtering of the sensor data might be needed for clean state transitions

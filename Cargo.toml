@@ -1,5 +1,5 @@
 [package]
-authors = ["Henrik Böving <hargonix@gmail.com>"]
+authors = ["Reece Wayt <reecwayt@pdx.edu>"]
 edition = "2018"
 name = "i2c"
 version = "0.1.0"
