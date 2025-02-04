@@ -1,3 +1,5 @@
+#![allow(dead_code)] // Disable warnings for unused code for now, FIXME later
+
 // src/orientation.rs
 pub struct AccelData {
     pub x: i32,
@@ -17,7 +19,7 @@ impl AccelDataManager {
         todo!()
     }
 
-    pub fn add_sample(&mut self, x: i32, y: i32, z: i32, timestamp: i32) {
+    pub fn add_sample(&mut self, _x: i32, _y: i32, _z: i32, _timestamp: i32) {
         todo!()
     }
 
@@ -28,6 +30,8 @@ impl AccelDataManager {
     }
 }
 
+#[cfg_attr(debug_assertions, derive(Debug))]
+#[derive(PartialEq, Copy, Clone)] // Add copy and clone traits so we can pass by value to application
 pub enum Orientation {
     Portrait,
     PortraitUpsideDown,
@@ -39,8 +43,8 @@ pub enum Orientation {
 
 pub struct OrientationManager {
     current_orientation: Orientation,
-    stable_duration: u32,     // Time in stable position
-    stability_threshold: u32,  // Required time for orientation change
+    stable_duration: u32,       // Time in stable position
+    stability_threshold: u32,   // Required time for orientation change
 }
 
 impl OrientationManager {
@@ -52,10 +56,49 @@ impl OrientationManager {
         }
     }
 
+    fn abs(x: f32) -> f32 {
+        if x < 0.0 { -x } else { x }
+    }
+
     pub fn update(&mut self, x: f32, y: f32, z: f32) -> Option<Orientation> {
-        // Implement orientation detection logic here
-        // Return Some(new_orientation) only when stable
-        todo!()
+        // Threshold for considering an axis as "primary" direction
+        // Using 0.8 as a threshold means the axis needs to experience
+        // at least ~80% of gravity's acceleration (1g)
+        const THRESHOLD: f32 = 0.8; 
+
+        // Determine orientation based on which axis has strongest acceleration
+        let new_orientation = if Self::abs(x) > THRESHOLD {
+            if x > 0.0 {
+                Orientation::Portrait
+            } else {
+                Orientation::PortraitUpsideDown
+            }
+        } else if Self::abs(y) > THRESHOLD {
+            if y > 0.0 {
+                Orientation::LandscapeLeft
+            } else {
+                Orientation::LandscapeRight
+            }
+        } else if Self::abs(z)> THRESHOLD {
+            if z > 0.0 {
+                Orientation::FaceUp
+            } else {
+                Orientation::FaceDown
+            }
+        } else {
+            // No orientation change
+            return None;
+        };
+
+        // Update orientation only on state changes, otherwise stay the same
+        if new_orientation != self.current_orientation {
+            self.current_orientation = new_orientation;
+            Some(self.current_orientation)
+        }
+        else {
+            None
+        }
+
     }
 }
 
@@ -65,7 +108,7 @@ pub enum DevicePowerManager {
 }
 
 impl DevicePowerManager {
-    pub fn from_orientation(orientation: &Orientation) -> Self {
+    pub fn from_orientation(_orientation: &Orientation) -> Self {
         // Implement power changes from state transition logic
         todo!()
     }
