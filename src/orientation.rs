@@ -1,6 +1,6 @@
 #![allow(dead_code)] // Disable warnings for unused code for now, FIXME later
 
-// src/orientation.rs
+// @file: src/orientation.rs
 
 // Import rprintln for debug output
 use rtt_target::rprintln;
@@ -118,6 +118,10 @@ impl OrientationManager {
     pub fn set_filter_coefficient(&mut self, alpha: f32) {
         assert!(alpha >= 0.0 && alpha <= 1.0, "Alpha must be between 0 and 1");
         self.alpha = alpha;
+    }
+
+    pub fn get_orientation(&self) -> Orientation {
+        self.current_orientation
     }
 
 }
