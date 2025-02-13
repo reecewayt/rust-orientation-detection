@@ -23,7 +23,7 @@ pub struct OrientationManager {
     filtered_y: f32,
     filtered_z: f32,
     alpha: f32,
-    last_update: i32,
+    //last_update: i32,
 }
 
 impl OrientationManager {
@@ -34,7 +34,7 @@ impl OrientationManager {
             filtered_y: 0.0,
             filtered_z: 0.0,
             alpha: 0.05, // Default filter coefficient
-            last_update: 0,
+            //last_update: 0,
             //stable_duration: 0,
             //stability_threshold: 1000, // TODO: add stability to orientation changes as well
         }
@@ -57,7 +57,7 @@ impl OrientationManager {
         );
     }
 
-    pub fn process_sample(&mut self, x: i32, y: i32, z: i32, timestamp: i32) -> Option<Orientation> {
+    pub fn process_sample(&mut self, x: i32, y: i32, z: i32) -> Option<Orientation> {
         // Convert mg to g
         let x_g = x as f32 / 1000.0;
         let y_g = y as f32 / 1000.0;
@@ -76,7 +76,7 @@ impl OrientationManager {
         #[cfg(feature = "filter-debug")]
         self.print_debug(x_g, y_g, z_g);
 
-        self.last_update = timestamp;
+        //self.last_update = timestamp;
 
         // Determine orientation from filtered values
         const THRESHOLD: f32 = 0.8;
