@@ -3,5 +3,9 @@
     "rust-analyzer.checkOnSave": false,
     "rust-analyzer.cargo.features": [
         "filter-debug"
-    ]
+    ],
+    "[markdown]": {
+        "editor.wordWrap": "wordWrapColumn",
+        "editor.wordWrapColumn": 100
+    }
 }
